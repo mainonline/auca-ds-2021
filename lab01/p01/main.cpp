@@ -1,8 +1,9 @@
 #include <iostream>
-#include <stdio.h>
+
+using namespace std;
 
 int main()
 {
-    printf("Hello c++\n");
+    cout << "Hello c++\n";
     return 0;
 }
