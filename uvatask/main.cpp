@@ -1,3 +1,36 @@
+// #include <bits/stdc++.h>
+
+// template <typename C>
+// int sz(const C &c) { return static_cast<int>(c.size()); }
+
+// using namespace std;
+
+// int main()
+// {
+//     iostream::sync_with_stdio(false);
+
+//     int n;
+//     int a, b, c;
+//     cin >> n;
+//     for (int i = 1; i <= n; i++)
+//     {
+//         cin >> a >> b >> c;
+
+//         if ((a > b && a < c) || (a < b && a > c))
+//         {
+//             cout << "Case " << i << ": " << a << endl;
+//         }
+//         else if ((b > a && b < c) || (b < a && b > c))
+//         {
+//             cout << "Case " << i << ": " << b << endl;
+//         }
+//         else
+//         {
+//             cout << "Case " << i << ": " << c << endl;
+//         }
+//     }
+// }
+
 #include <bits/stdc++.h>
 
 template <typename C>
@@ -5,28 +38,31 @@ int sz(const C &c) { return static_cast<int>(c.size()); }
 
 using namespace std;
 
+int summingDigits(int n)
+{
+    int sum = 0;
+    while (n != 0)
+    {
+        sum = sum + n % 10;
+        n = n / 10;
+    }
+
+    return sum;
+}
+
 int main()
 {
-    iostream::sync_with_stdio(false);
-
     int n;
-    int a, b, c;
-    cin >> n;
-    for (int i = 1; i <= n; i++)
-    {
-        cin >> a >> b >> c;
+    cout << "enter some number: " << endl;
 
-        if ((a > b && a < c) || (a < b && a > c))
+    while (cin >> n)
+    {
+        if (n == 0)
         {
-            cout << "Case " << i << ": " << a << endl;
+            break;
         }
-        else if ((b > a && b < c) || (b < a && b > c))
-        {
-            cout << "Case " << i << ": " << b << endl;
-        }
-        else
-        {
-            cout << "Case " << i << ": " << c << endl;
-        }
+
+        int res = summingDigits(n);
+        cout << res << endl;
     }
 }
