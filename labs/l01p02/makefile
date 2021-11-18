@@ -1,15 +1,12 @@
-src = $(wildcard *.cpp)
+main: main.o hello.o
+	g++ -o main main.o hello.o
 
-CXXFLAGS = -g -std=c++11 -Wall -Wextra -Wshadow -pedantic -D_GLIBCXX_DEBUG -fsanitize=address -fsanitize=undefined
-CXXRLSFLAGS = -O2 -std=c++11 -Wall -Wextra -Wshadow -pedantic
+main.o: main.cpp hello.hpp
+	g++ -c main.cpp
 
-main: $(src)
-	$(CXX) -o $@ $(CXXFLAGS) $^
+hello.o: hello.cpp hello.hpp
+	g++ -c hello.cpp
 
-.PHONY: release
-release:
-	$(CXX) -o main $(CXXRLSFLAGS) $(src)
-
-.PHONY: clean
+.POHONY: clean
 clean:
-	rm -f main
+	rm -f main *.o
