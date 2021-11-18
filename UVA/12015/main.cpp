@@ -1,41 +1,36 @@
+//12015 Google is feeling lucky
+
 #include <bits/stdc++.h>
 
 using namespace std;
 
 int main()
 {
-    const int URL_NUMBER = 10;
-
     int T;
     cin >> T;
-    for (int i = 1; i <= T; ++i)
+
+    for (int k = 1; k <= T; k++)
     {
-        vector<string> urls;
-        int maxRelevance = INT_MIN;
+        vector<string> path;
+        vector<int> number;
+        int n, best = 0;
+        string s;
 
-        string url;
-        int relevance;
-        for (int j = 0; j < URL_NUMBER; ++j)
+        for (int i = 0; i < 10; i++)
         {
-            cin >> url;
-            cin >> relevance;
-
-            if (relevance > maxRelevance)
-            {
-                maxRelevance = relevance;
-                urls.clear();
-                urls.push_back(url);
-            }
-            else if (relevance == maxRelevance)
-            {
-                urls.push_back(url);
-            }
+            cin >> s >> n;
+            path.push_back(s);
+            number.push_back(n);
+            best = max(number[i], best);
         }
 
-        cout << i << endl;
-        for (int j = 0; j < urls.size(); ++j)
+        cout << "Case #" << k << ":" << endl;
+        for (int j = 0; j < 10; j++)
         {
-            cout << urls[j].c_str() << endl;
+            if (number[j] == best)
+            {
+                cout << path[j] << endl;
+            }
         }
     }
 }
