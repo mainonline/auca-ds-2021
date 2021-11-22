@@ -1,4 +1,3 @@
-// 11044 - Searching for Nessy
 
 #include <bits/stdc++.h>
 
