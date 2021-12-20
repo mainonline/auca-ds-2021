@@ -21,4 +21,7 @@ int main(void)
     y = *p * *p;
 
     printf("y = %d\n", y);
+
+    printf("%ld\n", sizeof(int));
+    printf("%ld\n", sizeof(int *));
 }
