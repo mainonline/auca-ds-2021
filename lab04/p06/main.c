@@ -46,6 +46,7 @@ void p01()
 
     for (int i = 0; i < n; i++)
     {
+
         scanf("%d", &v.data[i]);
     }
 
