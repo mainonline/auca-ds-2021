@@ -31,6 +31,12 @@ public:
         }
     }
 
+    // copy constructor
+    VecInt(const VecInt &other);
+
+    // assignment operator
+    VecInt &operator=(const VecInt &other);
+
     ~VecInt()
     {
         std::cout << "~VecInt: " << sz << " integer released" << std::endl;
@@ -87,3 +93,6 @@ public:
 };
 
 #endif
+
+bool operator==(const VecInt &a, const VecInt &b);
+bool operator!=(const VecInt &a, const VecInt &b);
