@@ -75,9 +75,23 @@ void p0102()
 
 void p0201()
 {
+    // vector<int> v = {3, 1, 21, 43, 70, 0, 5};
+
+    // auto it = find_if(begin(v), end(v), IsEven());
+
+    // if (it != end(v))
+    // {
+    //     cout << "Position of first even number is " << it - begin(v) << endl;
+    //     cout << "The value equal to " << *it << endl;
+    // }
+    // else
+    // {
+    //     cout << "Not found!" << endl;
+    // }
     vector<int> v = {3, 1, 21, 43, 70, 0, 5};
 
-    auto it = find_if(begin(v), end(v), IsEven());
+    auto it = find_if(begin(v), end(v), [](int value)
+                      { return (value % 2 == 0); });
 
     if (it != end(v))
     {
@@ -95,4 +109,7 @@ int main()
     // p0101();
     // p0102();
     p0201();
+    cout << "\n";
+    cout << (2 % 3) << endl;
+    cout << (1 % 3) << endl;
 }
