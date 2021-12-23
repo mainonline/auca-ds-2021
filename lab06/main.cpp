@@ -3,6 +3,8 @@
 #include <vector>
 #include <string>
 #include <algorithm>
+#include <utility>
+#include <tuple>
 
 #include "../au/algol.hpp"
 
@@ -232,6 +234,251 @@ void p03()
     }
 }
 
+void p0401()
+{
+    vector<int> v;
+    for (int n; cin >> n;)
+    {
+        v.push_back(n);
+    }
+
+    auto it = min_element(begin(v), end(v));
+
+    if (it != end(v))
+    {
+        cout << "Index position of min element is " << it - begin(v) << endl;
+    }
+    else
+    {
+        cout << "not found" << endl;
+    }
+}
+
+void p0402()
+{
+    vector<int> v;
+    for (int n; cin >> n;)
+    {
+        v.push_back(n);
+    }
+
+    auto it = auMinElement(begin(v), end(v));
+
+    if (it != end(v))
+    {
+        cout << "Index position of min element is " << it - begin(v) << endl;
+    }
+    else
+    {
+        cout << "not found" << endl;
+    }
+}
+
+void p0501()
+{
+    string name;
+    double gpa;
+    vector<Student> stud;
+    while (cin >> name >> gpa)
+    {
+        stud.emplace_back(name, gpa);
+    }
+
+    auto itMinGpa = min_element(begin(stud), end(stud), [](const Student &s1, const Student &s2)
+                                { return s1.mGpa < s2.mGpa; });
+
+    if (itMinGpa != end(stud))
+    {
+        cout << "{ " << itMinGpa->mName << ", " << itMinGpa->mGpa << " }" << endl;
+    }
+    else
+    {
+        cout << "not found" << endl;
+    }
+
+    auto itMinName = min_element(begin(stud), end(stud), [](const Student &s1, const Student &s2)
+                                 { return s1.mName < s2.mName; });
+
+    if (itMinName != end(stud))
+    {
+        cout << "{ " << itMinName->mName << ", " << itMinName->mGpa << " }" << endl;
+    }
+    else
+    {
+        cout << "not found" << endl;
+    }
+}
+
+void p0502()
+{
+    string name;
+    double gpa;
+    vector<Student> stud;
+    while (cin >> name >> gpa)
+    {
+        stud.emplace_back(name, gpa);
+    }
+
+    auto itMinGpa = auMinElement(begin(stud), end(stud));
+
+    if (itMinGpa != end(stud))
+    {
+        cout << "{ " << itMinGpa->mName << ", " << itMinGpa->mGpa << " }" << endl;
+    }
+    else
+    {
+        cout << "not found" << endl;
+    }
+}
+
+void p07()
+{
+    vector<Student> students = {
+        {"D", 2.7},
+        {"A", 4.0},
+        {"X", 3.2},
+        {"C", 4.0},
+        {"K", 4.0},
+        {"E", 2.0},
+        {"R", 4.0},
+        {"D", 2.7},
+        {"A", 4.0},
+        {"X", 3.2},
+        {"C", 4.0},
+        {"K", 4.0},
+        {"E", 2.0},
+        {"R", 4.0},
+        {"D", 2.7},
+        {"A", 4.0},
+        {"X", 3.2},
+        {"C", 4.0},
+        {"K", 4.0},
+        {"E", 2.0},
+        {"R", 4.0}};
+
+    cout << "------- Regular sort -------" << endl;
+
+    sort(begin(students), end(students), [](const Student &s1, const Student &s2)
+         { return s1.mName < s2.mName; });
+
+    for (const auto s : students)
+    {
+        cout << s.mName << ", " << s.mGpa << endl;
+    }
+
+    cout << "-- sort by gpa --" << endl;
+
+    sort(begin(students), end(students), [](const Student &s1, const Student &s2)
+         { return s1.mGpa < s2.mGpa; });
+
+    for (const auto s : students)
+    {
+        cout << s.mName << ", " << s.mGpa << endl;
+    }
+
+    cout << "------- Stable sort -------" << endl;
+
+    stable_sort(begin(students), end(students), [](const Student &s1, const Student &s2)
+                { return s1.mName < s2.mName; });
+
+    for (const auto s : students)
+    {
+        cout << s.mName << ", " << s.mGpa << endl;
+    }
+
+    cout << "-- sort by gpa --" << endl;
+
+    stable_sort(begin(students), end(students), [](const Student &s1, const Student &s2)
+                { return s1.mGpa < s2.mGpa; });
+
+    for (const auto s : students)
+    {
+        cout << s.mName << ", " << s.mGpa << endl;
+    }
+}
+
+void p08()
+{
+    vector<pair<string, double>> students;
+    string name;
+    double gpa;
+
+    while (cin >> name >> gpa)
+    {
+        students.emplace_back(name, gpa);
+    }
+
+    sort(begin(students), end(students));
+
+    for (const auto s : students)
+    {
+        cout << s.first << ", " << s.second << endl;
+    }
+}
+
+void p09()
+{
+    using Employee = tuple<string, int, double>;
+    vector<Employee> employees;
+    string name;
+    int age;
+    double salary;
+
+    while (cin >> name >> age >> salary)
+    {
+        employees.emplace_back(name, age, salary);
+    }
+
+    sort(begin(employees), end(employees), [](const Employee &e1, const Employee &e2)
+         { return get<1>(e1) < get<1>(e2); });
+
+    for (const auto &e : employees)
+    {
+        cout << get<0>(e) << ", " << get<1>(e) << ", " << get<2>(e) << endl;
+    }
+}
+
+void p10()
+{
+    vector<int> v = {0, 4, 5, 10, 12, 20, 25, 40};
+    for (int n; cin >> n;)
+    {
+        cout << (binary_search(begin(v), end(v), n) ? "Yes" : "No") << endl;
+    }
+}
+
+void p11()
+{
+    vector<int> v = {0, 4, 5, 10, 12, 20, 25, 40};
+    for (int n; cin >> n;)
+    {
+        auto it = lower_bound(begin(v), end(v), n);
+        if (it == end(v))
+        {
+            cout << "no elements equal or greater than " << n << endl;
+        }
+        else if (*it == n)
+        {
+            cout << "index of " << n << " is " << it - begin(v) << endl;
+        }
+        else
+        {
+            cout << "index of first element greater than " << n << " is " << it - begin(v) << endl;
+        }
+    }
+}
+
+void p12()
+{
+    vector<int> v = {0, 0, 4, 5, 10, 10, 10, 12, 20, 25, 25, 25, 25, 40};
+
+    for (int n; cin >> n;)
+    {
+        auto p = equal_range(begin(v), end(v), n);
+        cout << "number of occurences of " << n << " is " << p.second - p.first << endl;
+    }
+}
+
 int main()
 {
     // p0101();
@@ -239,5 +486,15 @@ int main()
     // p0201();
     // p0202();
     // p06();
-    p03();
+    // p03();
+    // p0401();
+    // p0402();
+    // p0501();
+    p0502();
+    // p07();
+    // p08();
+    // p09();
+    // p10();
+    // p11();
+    // p12();
 }

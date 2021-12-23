@@ -61,3 +61,21 @@ ForwardIter auFindIf(ForwardIter beg, ForwardIter end, UnaryPredicate pred)
     }
     return beg;
 }
+
+template <typename ForwardIt>
+ForwardIt auMinElement(ForwardIt first, ForwardIt last)
+{
+    if (first == last)
+        return last;
+
+    ForwardIt smallest = first;
+    ++first;
+    for (; first != last; ++first)
+    {
+        if (*first < *smallest)
+        {
+            smallest = first;
+        }
+    }
+    return smallest;
+}
