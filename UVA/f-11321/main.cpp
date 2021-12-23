@@ -46,30 +46,11 @@
 
 using namespace std;
 
-int v;
-
-struct IsEven
-{
-    bool operator()(int a, int b) const
-    {
-        if (a % v != b % v)
-            return a % v < b % v;
-        if (a % 2 != 0)
-        {
-            if (b % 2 != 0)
-                return a > b;
-            return true;
-        }
-        if (b % 2 != 0)
-            return false;
-        return a < b;
-    }
-};
-
 int main()
 {
     vector<int> vec;
-    int n;
+    int n, v;
+    // int n;
     cin >> n >> v;
 
     for (int i = 0; i < n; i++)
@@ -81,10 +62,23 @@ int main()
 
     cout << n << " " << v << endl;
 
-    sort(vec.begin(), vec.begin() + n, IsEven());
+    sort(vec.begin(), vec.end(), [v](int a, int b)
+         {
+            if (a % v != b % v) {return a % v < b % v;}
+                if (a % 2 != 0)
+                {
+                    if (b % 2 != 0){
+                        return a > b;
+                    }
+                    return true;
+                }
+                if (b % 2 != 0) {
+                    return false;
+                }
+                return a < b; });
 
     for (int j = 0; j < n; j++)
     {
-        cout << vec[j] << " " << endl;
+        cout << vec[j] << "\n";
     }
 }
